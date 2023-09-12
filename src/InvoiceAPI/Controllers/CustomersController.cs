@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-
+    
 namespace InvoiceAPI.Controllers;
 
 [ApiController]
