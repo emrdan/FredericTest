@@ -1,0 +1,35 @@
+﻿<Properties StartupConfiguration="{80D011DF-36FF-4D17-A551-7797AC6F07C0}|https">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="src/Infrastructure/Data/CustomerDbContext.cs">
+    <Files>
+      <File FileName="src/Infrastructure/Data/CustomerDbContext.cs" Line="8" Column="2" />
+      <File FileName="src/Domain/Customer.cs" Line="11" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="FredericTest">
+            <Node name="src" expanded="True">
+              <Node name="Infrastructure" expanded="True">
+                <Node name="Data" expanded="True">
+                  <Node name="CustomerDbContext.cs" selected="True" />
+                </Node>
+              </Node>
+              <Node name="InvoiceAPI" expanded="True">
+                <Node name="Dependencies" expanded="True">
+                  <Node name="PackageDependencies" expanded="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.src.InvoiceAPI PreferredExecutionTarget="/Applications/Google Chrome.app" />
+</Properties>
