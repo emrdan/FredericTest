@@ -1,11 +1,9 @@
-﻿using System;
-namespace InvoiceAPI.Models.Domain
+﻿namespace InvoiceAPI.Models.Domain
 {
 	public class CustomerType
 	{
-		public CustomerType()
-		{
-		}
-	}
+        public Guid Id { get; set; }
+        public string Description { get; set; }
+    }
 }
 
