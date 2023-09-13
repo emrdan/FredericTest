@@ -1,4 +1,6 @@
-﻿using InvoiceAPI.Repositories;
+﻿using InvoiceAPI.Mappers;
+using InvoiceAPI.Models.DTO;
+using InvoiceAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InvoiceAPI.Controllers;
@@ -21,7 +23,9 @@ public class CustomerTypesController : ControllerBase
     {
         var customerTypes = await _customerTypeRepository.GetAllAsync();
 
-        return Ok(customerTypes);
+        var customerTypesDtos = customerTypes.Select(cType => CustomerTypeMapper.ToDto(cType));
+
+        return Ok(customerTypesDtos);
     }
 
     [HttpGet]
@@ -35,7 +39,7 @@ public class CustomerTypesController : ControllerBase
             return NotFound();
         }
 
-        return Ok(foundCustomerType);
+        return Ok(CustomerTypeMapper.ToDto(foundCustomerType));
     }
 
     [HttpDelete]

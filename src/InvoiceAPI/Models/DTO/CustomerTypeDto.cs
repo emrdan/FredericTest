@@ -3,9 +3,8 @@ namespace InvoiceAPI.Models.DTO
 {
 	public class CustomerTypeDto
 	{
-		public CustomerTypeDto()
-		{
-		}
-	}
+        public int Id { get; set; }
+        public required string Description { get; set; }
+    }
 }
 
