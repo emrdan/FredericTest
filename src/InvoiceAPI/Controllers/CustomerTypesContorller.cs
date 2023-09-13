@@ -53,6 +53,6 @@ public class CustomerTypesController : ControllerBase
             return NotFound();
         }
 
-        return Ok(customerType);
+        return Ok(CustomerTypeMapper.ToDto(customerType));
     }
 }
