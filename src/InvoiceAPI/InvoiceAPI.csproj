@@ -23,11 +23,13 @@
     <None Remove="Models\Domain\" />
     <None Remove="Models\DTO\" />
     <None Remove="Data\" />
+    <None Remove="Repositories\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Models\Domain\" />
     <Folder Include="Models\DTO\" />
     <Folder Include="Data\" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
 </Project>

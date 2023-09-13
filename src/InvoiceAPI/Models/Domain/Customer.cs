@@ -1,14 +1,21 @@
-﻿namespace InvoiceAPI.Models.Domain
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace InvoiceAPI.Models.Domain
 {
 	public class Customer
 	{
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
-        public bool Status { get; set; }
-        public Guid CustomerTypeId { get; set; }
+        public int Id { get; set; }
 
-        public CustomerType CustomerType { get; set; }
+        [Column("CustName")]
+        public required string Name { get; set; }
+
+        [Column("Adress")]
+        public required string Address { get; set; }
+
+        public bool Status { get; set; }
+        public int CustomerTypeId { get; set; }
+
+        public CustomerType? CustomerType { get; set; }
     }
 }
 

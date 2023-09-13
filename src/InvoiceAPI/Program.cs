@@ -1,3 +1,7 @@
+using InvoiceAPI.Data;
+using InvoiceAPI.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,7 +11,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddDbContext<InvoicesDbContext>(options =>
+  options.UseSqlServer(builder.Configuration.GetConnectionString("InvoiceDbConnectionString"))
+);
+
+builder.Services.AddScoped<ICustomerTypeRepository, SQLCustomerTypeRepository>();
+builder.Services.AddScoped<ICustomerRepository, SQLCustomerRepository>();
+
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
