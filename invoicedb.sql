@@ -45,7 +45,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[InvoiceDetail](
 [Id] [int] IDENTITY(1,1) NOT NULL,
-[CustomerId] [int] NOT NULL,
+[InvoiceId] [int] NOT NULL,
 [Qty] [int] NOT NULL,
 [Price] [money] NOT NULL,
 [TotalItbis] [money] NOT NULL,
@@ -79,7 +79,7 @@ ON DELETE CASCADE
 GO
 ALTER TABLE [dbo].[Invoice] CHECK CONSTRAINT [FK_Invoice_Customers]
 GO
-ALTER TABLE [dbo].[InvoiceDetail] WITH CHECK ADD CONSTRAINT [FK_InvoiceDetail_Invoice] FOREIGN KEY([CustomerId])
+ALTER TABLE [dbo].[InvoiceDetail] WITH CHECK ADD CONSTRAINT [FK_InvoiceDetail_Invoice] FOREIGN KEY([InvoiceId])
 REFERENCES [dbo].[Invoice] ([Id])
 ON UPDATE CASCADE
 ON DELETE CASCADE
