@@ -1,4 +1,5 @@
-CREATE DATABASE [Test_Invoice] GO
+CREATE DATABASE [Test_Invoice] 
+GO
 USE [Test_Invoice]
 GO
 
@@ -64,7 +65,8 @@ ALTER TABLE [dbo].[Invoice] ADD CONSTRAINT [DF_Invoice_TotalItbis] DEFAULT ((0))
 GO
 ALTER TABLE [dbo].[InvoiceDetail] ADD CONSTRAINT [DF_InvoiceDetail_TotalItbis1] DEFAULT ((0)) FOR [Qty]
 GO
-ALTER TABLE [dbo].[InvoiceDetail] ADD CONSTRAINT [DF_InvoiceDetail_TotalItbis] DEFAULT ((0)) FOR [TotalItbis] GO
+ALTER TABLE [dbo].[InvoiceDetail] ADD CONSTRAINT [DF_InvoiceDetail_TotalItbis] DEFAULT ((0)) FOR [TotalItbis] 
+GO
 ALTER TABLE [dbo].[Customers] WITH CHECK ADD CONSTRAINT [FK_Customers_CustomerTypes] FOREIGN KEY([CustomerTypeId])
 REFERENCES [dbo].[CustomerTypes] ([Id])
 ON UPDATE CASCADE
