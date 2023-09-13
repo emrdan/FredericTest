@@ -37,4 +37,18 @@ public class CustomersController : ControllerBase
 
         return Ok(foundCustomer);
     }
+
+    [HttpDelete]
+    [Route("{id:int}")]
+    public async Task<IActionResult> Delete([FromRoute] int id)
+    {
+        var customer = await _customerRepository.DeleteAsync(id);
+
+        if (customer == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(customer);
+    }
 }
