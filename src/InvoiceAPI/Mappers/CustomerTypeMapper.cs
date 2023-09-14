@@ -12,5 +12,20 @@ namespace InvoiceAPI.Mappers
                 Description = cType.Description
             };
         }
+
+        public static CustomerType toDomain(AddCustomerTypeRequestDto cTypeDto)
+        {
+            return new CustomerType()
+            {
+                Description = cTypeDto.Description
+            };
+        }
+        public static CustomerType toDomain(UpdateCustomerTypeRequestDto cTypeDto)
+        {
+            return new CustomerType()
+            {
+                Description = cTypeDto.Description
+            };
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using InvoiceAPI.Mappers;
+using InvoiceAPI.Models.Domain;
 using InvoiceAPI.Models.DTO;
 using InvoiceAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
@@ -54,5 +55,32 @@ public class CustomerTypesController : ControllerBase
         }
 
         return Ok(CustomerTypeMapper.ToDto(customerType));
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] AddCustomerTypeRequestDto addCustomerTypeRequestDto)
+    {
+        var customerTypeToAdd = CustomerTypeMapper.toDomain(addCustomerTypeRequestDto);
+            
+        var createdType = await _customerTypeRepository.CreateAsync(customerTypeToAdd);
+
+        return CreatedAtAction(nameof(GetById), new { id = createdType.Id }, CustomerTypeMapper.ToDto(createdType));
+    }
+
+    [HttpPut]
+    [Route("{id:int}")]
+    public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateCustomerTypeRequestDto updateCustomerTypeRequestDto)
+    {
+
+        var customerTypeToUpdate = CustomerTypeMapper.toDomain(updateCustomerTypeRequestDto);
+
+        customerTypeToUpdate = await _customerTypeRepository.UpdateAsync(id, customerTypeToUpdate);
+
+        if (customerTypeToUpdate == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(CustomerTypeMapper.ToDto(customerTypeToUpdate));
     }
 }

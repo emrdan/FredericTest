@@ -32,7 +32,11 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-CREATE TABLE [dbo].[Invoice]( [Id] [int] IDENTITY(1,1) NOT NULL, [CustomerId] [int] NOT NULL, [TotalItbis] [money] NOT NULL, [SubTotal] [money] NOT NULL, [Total] [money] NOT NULL,
+CREATE TABLE [dbo].[Invoice](
+[Id] [int] IDENTITY(1,1) NOT NULL, 
+[CustomerId] [int] NOT NULL, 
+[TotalItbis] [money] NOT NULL, 
+[Total] [money] NOT NULL,
 CONSTRAINT [PK_Invoice] PRIMARY KEY CLUSTERED (
 [Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -48,9 +52,7 @@ CREATE TABLE [dbo].[InvoiceDetail](
 [InvoiceId] [int] NOT NULL,
 [Qty] [int] NOT NULL,
 [Price] [money] NOT NULL,
-[TotalItbis] [money] NOT NULL,
 [SubTotal] [money] NOT NULL,
-[Total] [money] NOT NULL,
 CONSTRAINT [PK_InvoiceDetail] PRIMARY KEY CLUSTERED (
 [Id] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
@@ -61,11 +63,13 @@ ALTER TABLE [dbo].[Customers] ADD CONSTRAINT [DF_Customers_Status] DEFAULT ((1))
 GO
 ALTER TABLE [dbo].[Customers] ADD CONSTRAINT [DF_Customers_CustomerType] DEFAULT ((1)) FOR [CustomerTypeId]
 GO
+ALTER TABLE [dbo].[Invoice] ADD CONSTRAINT [DF_Invoice_Total] DEFAULT ((0)) FOR [Total]
+GO
 ALTER TABLE [dbo].[Invoice] ADD CONSTRAINT [DF_Invoice_TotalItbis] DEFAULT ((0)) FOR [TotalItbis]
 GO
-ALTER TABLE [dbo].[InvoiceDetail] ADD CONSTRAINT [DF_InvoiceDetail_TotalItbis1] DEFAULT ((0)) FOR [Qty]
+ALTER TABLE [dbo].[InvoiceDetail] ADD CONSTRAINT [DF_InvoiceDetail_Qty] DEFAULT ((0)) FOR [Qty]
 GO
-ALTER TABLE [dbo].[InvoiceDetail] ADD CONSTRAINT [DF_InvoiceDetail_TotalItbis] DEFAULT ((0)) FOR [TotalItbis] 
+ALTER TABLE [dbo].[InvoiceDetail] ADD CONSTRAINT [DF_InvoiceDetail_Subtotal] DEFAULT ((0)) FOR [Subtotal]
 GO
 ALTER TABLE [dbo].[Customers] WITH CHECK ADD CONSTRAINT [FK_Customers_CustomerTypes] FOREIGN KEY([CustomerTypeId])
 REFERENCES [dbo].[CustomerTypes] ([Id])

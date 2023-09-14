@@ -12,8 +12,8 @@ namespace InvoiceAPI.Models.Domain
         [Column("Adress")]
         public required string Address { get; set; }
 
-        public bool Status { get; set; }
-        public int CustomerTypeId { get; set; }
+        public required bool Status { get; set; }
+        public required int CustomerTypeId { get; set; }
 
         public CustomerType? CustomerType { get; set; }
     }

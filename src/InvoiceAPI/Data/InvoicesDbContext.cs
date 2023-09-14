@@ -12,6 +12,8 @@ namespace InvoiceAPI.Data
 
 		public DbSet<Customer> Customers { get; set; }
         public DbSet<CustomerType> CustomerTypes { get; set; }
+		public DbSet<Invoice> Invoices { get; set; }
+		public DbSet<InvoiceDetail> InvoiceDetails { get; set; }
     }
 }
 

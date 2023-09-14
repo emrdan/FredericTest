@@ -1,4 +1,5 @@
 using InvoiceAPI.Data;
+using InvoiceAPI.Models.Domain;
 using InvoiceAPI.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,7 +18,8 @@ builder.Services.AddDbContext<InvoicesDbContext>(options =>
 
 builder.Services.AddScoped<ICustomerTypeRepository, SQLCustomerTypeRepository>();
 builder.Services.AddScoped<ICustomerRepository, SQLCustomerRepository>();
-
+builder.Services.AddScoped<IInvoiceRepository, SQLInvoiceRepository>();
+builder.Services.AddScoped<IInvoiceDetailRepository, SQLInvoiceDetailRepository>();
 
 var app = builder.Build();
 

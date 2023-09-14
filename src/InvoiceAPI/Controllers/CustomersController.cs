@@ -1,3 +1,6 @@
+using InvoiceAPI.Mappers;
+using InvoiceAPI.Models.Domain;
+using InvoiceAPI.Models.DTO;
 using InvoiceAPI.Repositories;
 using Microsoft.AspNetCore.Mvc;
     
@@ -21,7 +24,9 @@ public class CustomersController : ControllerBase
     {
         var customers = await _customerRepository.GetAllAsync();
 
-        return Ok(customers);
+        var customerDtos = customers.Select(c => CustomerMapper.ToDto(c));
+
+        return Ok(customerDtos);
     }
 
     [HttpGet]
@@ -35,7 +40,7 @@ public class CustomersController : ControllerBase
            return NotFound();
         }
 
-        return Ok(foundCustomer);
+        return Ok(CustomerMapper.ToDto(foundCustomer));
     }
 
     [HttpDelete]
@@ -49,6 +54,33 @@ public class CustomersController : ControllerBase
             return NotFound();
         }
 
-        return Ok(customer);
+        return Ok(CustomerMapper.ToDto(customer));
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] AddCustomerRequestDto addCustomerRequestDto)
+    {
+        var customerToAdd = CustomerMapper.toDomain(addCustomerRequestDto);
+
+        var createdCustomer = await _customerRepository.CreateAsync(customerToAdd);
+
+        return CreatedAtAction(nameof(GetById), new { id = createdCustomer.Id }, CustomerMapper.ToDto(createdCustomer));
+    }
+
+    [HttpPut]
+    [Route("{id:int}")]
+    public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateCustomerRequestDto updateCustomerRequestDto)
+    {
+
+        var customerToUpdate = CustomerMapper.toDomain(updateCustomerRequestDto);
+
+        customerToUpdate = await _customerRepository.UpdateAsync(id, customerToUpdate);
+
+        if (customerToUpdate == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(CustomerMapper.ToDto(customerToUpdate));
     }
 }

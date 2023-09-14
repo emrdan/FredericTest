@@ -15,17 +15,23 @@ namespace InvoiceAPI.Repositories
 
         public async Task<List<Customer>> GetAllAsync()
         {
-            return await dbContext.Customers.ToListAsync();
+            return await dbContext.Customers
+              .Include("CustomerType")
+              .ToListAsync();
         }
 
         public async Task<Customer?> GetByIdAsync(int id)
         {
-            return await dbContext.Customers.FirstOrDefaultAsync(cst => cst.Id == id);
+            return await dbContext.Customers
+              .Include("CustomerType")
+              .FirstOrDefaultAsync(cst => cst.Id == id);
         }
 
         public async Task<Customer?> DeleteAsync(int id)
         {
-            var existingCustomer = await dbContext.Customers.FirstOrDefaultAsync(cst => cst.Id == id);
+            var existingCustomer = await dbContext.Customers
+                .Include("CustomerType")
+                .FirstOrDefaultAsync(cst => cst.Id == id);
 
 
             if (existingCustomer == null)
