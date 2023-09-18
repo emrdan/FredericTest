@@ -12,6 +12,9 @@ namespace InvoiceAPI.Controllers;
 [Route("api/[controller]")]
 public class InvoiceDetailsController : ControllerBase
 {
+    delegate Invoice CalculatorDelegate(Invoice invoice, InvoiceDetail invoiceDetail);
+
+    private CalculatorDelegate calculator;
     private readonly ILogger<CustomersController> _logger;
     private readonly IInvoiceDetailRepository _invoiceDetailRepository;
     private readonly IInvoiceRepository _invoiceRepository;
@@ -66,7 +69,8 @@ public class InvoiceDetailsController : ControllerBase
 
         if (invoiceToUpdate != null)
         {
-            var updatedInv = InvoiceCalculator.Substract(invoiceToUpdate, invoiceDetail);
+            calculator = InvoiceCalculator.Substract;
+            var updatedInv = calculator(invoiceToUpdate, invoiceDetail);
 
             await _invoiceRepository.UpdateAsync(invoiceDetail.InvoiceId, updatedInv);
 
@@ -91,7 +95,9 @@ public class InvoiceDetailsController : ControllerBase
 
         var createdInvoiceDetail = await _invoiceDetailRepository.CreateAsync(invoiceDetailToAdd);
 
-        var updatedInv = InvoiceCalculator.Add(invoiceToUpdate, invoiceDetailToAdd);
+        calculator = InvoiceCalculator.Add;
+        var updatedInv = calculator(invoiceToUpdate, invoiceDetailToAdd);
+
         await _invoiceRepository.UpdateAsync(invoiceId, updatedInv);
 
         return CreatedAtAction(nameof(GetById), new { id = createdInvoiceDetail.Id }, InvoiceDetailMapper.ToDto(createdInvoiceDetail));
@@ -117,7 +123,8 @@ public class InvoiceDetailsController : ControllerBase
 
         if (invoiceToUpdate != null)
         {
-            var updatedInv = InvoiceCalculator.Reassign(invoiceToUpdate, invoiceDetailToUpdate);
+            calculator = InvoiceCalculator.Reassign;
+            var updatedInv = calculator(invoiceToUpdate, invoiceDetailToUpdate);
             await _invoiceRepository.UpdateAsync(invoiceDetailToUpdate.InvoiceId, updatedInv);
         }
 
