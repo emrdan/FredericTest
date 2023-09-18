@@ -1,5 +1,5 @@
 import './App.css'
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, NavLink } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient({
@@ -17,14 +17,13 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <div className="App">
-      <QueryClientProvider client={queryClient}>
-        <Routes>
-          <Route path="/" element={<Navigate replace to="/movies" />} />
-          <Route path="/movies" element={<MoviesPage />} />
-          <Route path="/movies/:id" element={<MoviesDetailPage />} />
-          <Route path="*" element={<NotFoundRoute />} />
-        </Routes>
-      </QueryClientProvider>
+      <div className="sidebar">
+        <NavLink to={"/customers"}>Customers</NavLink>
+        <NavLink to={"/customer-types"}>Customer Types</NavLink>
+        <NavLink to={"/invoices"}>Invoices</NavLink>
+        <NavLink to={"/invoice-details"}>Invoice Details</NavLink>
+      </div>
+      <div className="content"></div>
     </div>
   );
 }
