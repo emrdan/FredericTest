@@ -11,6 +11,8 @@
 
 ### Backend
 <img width="1488" alt="Captura de Pantalla 2023-09-18 a la(s) 7 29 37 p m" src="https://github.com/emrdan/FredericTest/assets/13395315/b772a1e3-7e64-4dc3-8ece-8c1b74066f6a">
+<img width="1488" alt="Captura de Pantalla 2023-09-18 a la(s) 7 43 12 p m" src="https://github.com/emrdan/FredericTest/assets/13395315/8442a318-48f9-4e8b-824e-62e6023166db">
+<img width="1488" alt="Captura de Pantalla 2023-09-18 a la(s) 7 43 23 p m" src="https://github.com/emrdan/FredericTest/assets/13395315/6ba60224-2d3f-421a-86c1-0d64f73dc871">
 
 ### Frontend (Read)
 <img width="1488" alt="Captura de Pantalla 2023-09-18 a la(s) 7 30 38 p m" src="https://github.com/emrdan/FredericTest/assets/13395315/d6bc3441-8cfd-4b19-bf57-ad6507f5244c">
