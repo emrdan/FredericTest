@@ -6,10 +6,10 @@ export class FredericInvoice extends ServiceProvider implements InvoiceServicePr
     super('https://localhost:7263/api');
   }
 
-  private readonly customersUrl: string = '/customers';
-  private readonly customerTypesUrl: string = '/customertypes';
-  private readonly invoicesUrl: string = '/invoices';
-  private readonly invoiceDetailsUrl: string = '/invoicedetails';
+  private readonly customersUrl = '/customers';
+  private readonly customerTypesUrl = '/customertypes';
+  private readonly invoicesUrl = '/invoices';
+  private readonly invoiceDetailsUrl = '/invoicedetails';
 
   async updateCustomer(id: number, name: string, address: string, status: boolean, customerTypeId: number): Promise<Customer> {
     const result = await this.put(this.customersUrl, { id }, {
