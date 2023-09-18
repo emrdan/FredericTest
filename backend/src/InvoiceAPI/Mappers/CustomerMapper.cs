@@ -13,7 +13,7 @@ namespace InvoiceAPI.Mappers
                 Name = customer.Name,
                 Address = customer.Address,
                 Status = customer.Status,
-                CustomerTypeId = customer.CustomerTypeId
+                CustomerType = customer.CustomerType
             };
         }
 

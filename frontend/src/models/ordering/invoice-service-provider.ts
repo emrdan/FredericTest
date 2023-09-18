@@ -8,14 +8,15 @@ export type Customer = {
   name: string,
   address: string,
   status: boolean,
-  customerTypeId: number
+  customerType: CustomerType
 }
 
 export type Invoice = {
   id: number,
   customerId: number,
   totalItbis: number,
-  total: number
+  total: number,
+  customer: Customer
 }
 
 export type InvoiceDetail = {

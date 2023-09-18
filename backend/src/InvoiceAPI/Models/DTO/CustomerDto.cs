@@ -10,7 +10,8 @@ namespace InvoiceAPI.Models.DTO
         public required string Name { get; set; }
         public required string Address { get; set; }
         public bool Status { get; set; }
-        public int CustomerTypeId { get; set; }
+
+        public CustomerType? CustomerType { get; set; }
 
     }
 }

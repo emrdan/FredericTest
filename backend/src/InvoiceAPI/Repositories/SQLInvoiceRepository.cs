@@ -16,12 +16,16 @@ namespace InvoiceAPI.Repositories
 
         public async Task<List<Invoice>> GetAllAsync()
         {
-            return await dbContext.Invoices.ToListAsync();
+            return await dbContext.Invoices
+                .Include("Customer")
+                .ToListAsync();
         }
 
         public async Task<Invoice?> GetByIdAsync(int id)
         {
-            return await dbContext.Invoices.FirstOrDefaultAsync(invoice => invoice.Id == id);
+            return await dbContext.Invoices
+                .Include("Customer")
+                .FirstOrDefaultAsync(invoice => invoice.Id == id);
         }
 
         public async Task<Invoice?> DeleteAsync(int id)
@@ -58,8 +62,8 @@ namespace InvoiceAPI.Repositories
             }
 
             existingInvoice.CustomerId = invoice.CustomerId;
-            existingInvoice.TotalItbis = invoice.TotalItbis;
-            existingInvoice.Total = invoice.Total;
+            existingInvoice.TotalItbis = invoice.TotalItbis > 0 ? invoice.TotalItbis : existingInvoice.TotalItbis;
+            existingInvoice.Total = invoice.Total > 0 ? invoice.Total : existingInvoice.Total;
 
             await dbContext.SaveChangesAsync();
 

@@ -21,6 +21,18 @@ builder.Services.AddScoped<ICustomerRepository, SQLCustomerRepository>();
 builder.Services.AddScoped<IInvoiceRepository, SQLInvoiceRepository>();
 builder.Services.AddScoped<IInvoiceDetailRepository, SQLInvoiceDetailRepository>();
 
+// Named Policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "AllowOrigin",
+        builder =>
+        {
+            builder.WithOrigins("https://localhost:7263", "http://localhost:5155", "http://localhost:5173")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+        });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -35,5 +47,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors("AllowOrigin");
 
 app.Run();

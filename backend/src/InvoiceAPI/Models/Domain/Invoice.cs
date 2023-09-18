@@ -11,5 +11,6 @@ namespace InvoiceAPI.Models.Domain
         public decimal Total { get; set; }
 
         public required int CustomerId { get; set; }
+        public Customer? Customer { get; set; }
     }
 }

@@ -12,7 +12,7 @@ export class FredericInvoice extends ServiceProvider implements InvoiceServicePr
   private readonly invoiceDetailsUrl = '/invoicedetails';
 
   async updateCustomer(id: number, name: string, address: string, status: boolean, customerTypeId: number): Promise<Customer> {
-    const result = await this.put(this.customersUrl, { id }, {
+    const result = await this.put(this.customersUrl + `/${id}`, {
       name,
       address,
       status,
@@ -23,7 +23,7 @@ export class FredericInvoice extends ServiceProvider implements InvoiceServicePr
   }
 
   async updateCustomerType(id: number, description: string): Promise<CustomerType> {
-    const result = await this.put(this.customersUrl, { id }, {
+    const result = await this.put(this.customerTypesUrl + `/${id}`, {
       description
     })
 
@@ -31,7 +31,7 @@ export class FredericInvoice extends ServiceProvider implements InvoiceServicePr
   }
 
   async updateInvoice(id: number, customerId: number): Promise<Invoice> {
-    const result = await this.put(this.invoicesUrl, { id}, {
+    const result = await this.put(this.invoicesUrl + `/${id}`, {
       customerId  
     })
 
@@ -39,7 +39,7 @@ export class FredericInvoice extends ServiceProvider implements InvoiceServicePr
   }
 
   async updateInvoiceDetail(id: number, price: number, quantity: number, invoiceId: number): Promise<InvoiceDetail> {
-    const result = await this.put(this.invoiceDetailsUrl, { id }, {
+    const result = await this.put(this.invoiceDetailsUrl + `/${id}`, {
       price,
       quantity,
       invoiceId
@@ -60,7 +60,7 @@ export class FredericInvoice extends ServiceProvider implements InvoiceServicePr
   }
 
   async createCustomerType(description: string): Promise<CustomerType> {
-    const result = await this.post(this.customersUrl, {
+    const result = await this.post(this.customerTypesUrl, {
       description
     })
 
@@ -86,22 +86,22 @@ export class FredericInvoice extends ServiceProvider implements InvoiceServicePr
   }
 
   async deleteCustomerType(id: number): Promise<CustomerType> {
-    const result = await this.delete(this.customerTypesUrl, { id });
+    const result = await this.delete(this.customerTypesUrl + `/${id}`);
     return result.data as CustomerType;
   }
 
   async deleteCustomer(id: number): Promise<Customer> {
-    const result = await this.delete(this.customersUrl, { id });
+    const result = await this.delete(this.customersUrl + `/${id}`);
     return result.data as Customer;
   }
 
   async deleteInvoice(id: number): Promise<Invoice> {
-    const result = await this.delete(this.invoicesUrl, { id });
+    const result = await this.delete(this.invoicesUrl + `/${id}`);
     return result.data as Invoice;
   }
 
   async deleteInvoiceDetail(id: number): Promise<InvoiceDetail> {
-    const result = await this.delete(this.invoiceDetailsUrl, { id });
+    const result = await this.delete(this.invoiceDetailsUrl + `/${id}`);
     return result.data as InvoiceDetail;
   }
 
@@ -111,22 +111,22 @@ export class FredericInvoice extends ServiceProvider implements InvoiceServicePr
   }
 
   async getCustomerTypeById(id: number): Promise<CustomerType> {
-    const result = await this.get(this.customerTypesUrl, { id });
+    const result = await this.get(this.customerTypesUrl + `/${id}`);
     return result.data as CustomerType;
   }
 
   async getCustomerById(id: number): Promise<Customer> {
-    const result = await this.get(this.customersUrl, { id });
+    const result = await this.get(this.customersUrl + `/${id}`);
     return result.data as Customer;
   }
 
   async getInvoiceById(id: number): Promise<Invoice> {
-    const result = await this.get(this.invoicesUrl, { id });
+    const result = await this.get(this.invoicesUrl + `/${id}`);
     return result.data as Invoice;
   }
 
   async getInvoiceDetailById(id: number): Promise<InvoiceDetail> {
-    const result = await this.get(this.invoiceDetailsUrl, { id });
+    const result = await this.get(this.invoiceDetailsUrl + `/${id}`);
     return result.data as InvoiceDetail;
   }
 

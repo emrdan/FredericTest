@@ -38,7 +38,6 @@ export abstract class ServiceProvider {
 
   protected put (
     url: string, 
-    query?: Record<string, string | number>, 
     body?: {
       [index: string]: unknown
     }, 
@@ -46,7 +45,6 @@ export abstract class ServiceProvider {
   ): Promise<HttpResponse> {
     return this.httpClient.request(`${this.baseUrl}${url}`, {
       method: 'PUT',
-      queryParams: query,
       bodyParams: body,
       headers
     })
@@ -54,7 +52,6 @@ export abstract class ServiceProvider {
 
   protected delete (
     url: string,
-    query?: Record<string, string | number>, 
     body?: {
       [index: string]: unknown
     },
@@ -62,7 +59,6 @@ export abstract class ServiceProvider {
   ): Promise<HttpResponse> {
     return this.httpClient.request(`${this.baseUrl}${url}`, {
       method: 'DELETE',
-      queryParams: query,
       bodyParams: body,
       headers
     })

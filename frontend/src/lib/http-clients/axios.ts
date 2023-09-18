@@ -8,7 +8,7 @@ export class AxiosHttpClient implements HttpClient {
       url,
       params: options.queryParams,
       data: options.bodyParams,
-      timeout: options.timeoutInMs ? options.timeoutInMs : 5000
+      timeout: options.timeoutInMs
     }
 
     const result = await axios(axiosOptions);

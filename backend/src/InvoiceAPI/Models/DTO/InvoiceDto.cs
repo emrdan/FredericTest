@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using InvoiceAPI.Models.Domain;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace InvoiceAPI.Models.DTO
 {
@@ -10,5 +11,6 @@ namespace InvoiceAPI.Models.DTO
         public required decimal Total { get; set; }
 
         public required int CustomerId { get; set; }
+        public Customer? Customer { get; set; }
     }
 }

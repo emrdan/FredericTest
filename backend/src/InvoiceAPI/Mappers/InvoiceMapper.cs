@@ -11,6 +11,7 @@ namespace InvoiceAPI.Mappers
             {
                 Id = invoice.Id,
                 CustomerId = invoice.CustomerId,
+                Customer = invoice.Customer,
                 TotalItbis = invoice.TotalItbis,
                 Total = invoice.Total
             };
